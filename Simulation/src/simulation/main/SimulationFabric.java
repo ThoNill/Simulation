@@ -1,12 +1,16 @@
 package simulation.main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import allgemein.Check;
 import simulation.core.GUIFactory;
@@ -57,7 +61,7 @@ public class SimulationFabric extends Check {
 	private ShowResultsDescription showResultdescription;
 
 	private Simulation simulation;
-	
+
 	private String title;
 
 	public SimulationFabric(String title) {
@@ -107,14 +111,15 @@ public class SimulationFabric extends Check {
 	public void connect(String ziel, String quelle) {
 		String aziel[] = ziel.split("\\.");
 		String aquelle[] = quelle.split("\\.");
-		addBindDescription(new BindDescription(aziel[0], aziel[1], aquelle[0], aquelle[1]));
+		addBindDescription(new BindDescription(aziel[0], aziel[1], aquelle[0],
+				aquelle[1]));
 	}
 
 	public void addResultDescription(String name, String className,
-			String nodeName, String outName,Color color) {
+			String nodeName, String outName, Color color,String title) {
 		ShowResultsDescription d = new ShowResultsDescription(nodeName,
 				className);
-		d.add(new ShowResultsItem(nodeName, nodeName, outName,color));
+		d.add(new ShowResultsItem(nodeName, nodeName, outName, color,title));
 		resultDescriptions.add(d);
 	}
 
@@ -261,7 +266,7 @@ public class SimulationFabric extends Check {
 		}
 	}
 
-	public JPanel createParameterPanel(Simulation simulation) {
+	public ParameterPanel createParameterPanel(Simulation simulation) {
 		checkNull(simulation);
 
 		return createParameterPanel(simulation, bestimmeOffeneParameter());
@@ -275,16 +280,17 @@ public class SimulationFabric extends Check {
 		return openParameters;
 	}
 
-	private JPanel createParameterPanel(Simulation simulation,
+	private ParameterPanel createParameterPanel(Simulation simulation,
 			Vector<ValueDescription> openParameters) {
-		JPanel panel = new JPanel();
+		ParameterPanel panel = new ParameterPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		for (ValueDescription descr : openParameters) {
 
 			if (descr instanceof DoubleValueDescription) {
 				DoubleValueDescription ddescr = (DoubleValueDescription) descr;
-				DoubleValue value = new DoubleValue(descr.getName());
+				DoubleValue value = new DoubleValue(descr.getLongName());
 				value.addPropertyChangeListener(simulation);
+				panel.add(value);
 				panel.add(guiFactory.getGUI(value, ddescr));
 
 				SetValue setValue = new SetParameterToValue(descr.getNode(),
@@ -299,6 +305,26 @@ public class SimulationFabric extends Check {
 		checkNull(description);
 		showResultdescription = description;
 	}
+
+	public JPanel resultLegende() {
+		JPanel panel = new ParameterPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+		for (ShowResultsItem descr : showResultdescription.getItems()) {
+
+			JPanel lpanel = new JPanel();
+			TitledBorder titel = new TitledBorder(descr.getTitle());
+			lpanel.setBorder(titel);
+			lpanel.setLayout(new BorderLayout());
+			JPanel cpanel = new JPanel();
+			cpanel.setBackground(descr.getColor());
+			lpanel.add(cpanel,BorderLayout.NORTH); 
+			panel.add(lpanel);
+
+		}
+		panel.setMaximumSize(new Dimension(200, 8));
+		return panel;
+	};
 
 	public ShowResults createShowResults(Simulation simulation) {
 		checkNull(simulation);
@@ -334,7 +360,8 @@ public class SimulationFabric extends Check {
 		Node node = nodeHash.get(item.getNodeName());
 		ValueDescription valueDescription = node.searchDescription(item
 				.getOutName());
-		res.addOutputFor(item.getName(), node, valueDescription.getNumber(),item.getColor());
+		res.addOutputFor(item.getName(), node, valueDescription.getNumber(),
+				item.getColor());
 	}
 
 	public String getTitle() {

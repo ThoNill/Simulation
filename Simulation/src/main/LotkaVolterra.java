@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 
 import simulation.core.ShowResultsDescription;
 import simulation.main.BindDescription;
+import simulation.main.ParameterPanel;
 import simulation.main.Simulation;
 import simulation.main.SimulationFabric;
 
@@ -31,12 +31,23 @@ public class LotkaVolterra {
 			Simulation sys;
 			try {
 				sys = description.createSystem();
+				
+				
 				JComponent comp = (JComponent)description.createShowResults(sys);
 				
 				sys.simulate();
 			
-				JPanel parameterPanel = description.createParameterPanel(sys);
+				ParameterPanel parameterPanel = description.createParameterPanel(sys);
+				JPanel legende = description.resultLegende();
+				parameterPanel.add(legende);
+				parameterPanel.add(new JPanel());
 				
+				parameterPanel.setValue("cmr.c",1.0);
+				parameterPanel.setValue("cmb.c",1.0);
+				parameterPanel.setValue("mr.c",1.0);
+				parameterPanel.setValue("mb.c",1.0);
+				parameterPanel.setValue("raeuber.start",0.5);
+				parameterPanel.setValue("beute.start",1.2);
 				
 				JPanel panel = new JPanel(new BorderLayout());
 				panel.add(BorderLayout.EAST,parameterPanel);
@@ -68,7 +79,7 @@ public class LotkaVolterra {
 		description.setEndTime(3.0);
 		description.addNodeDescription("id","simulation.nodes.Integral");
 		description.addBindDescription(new BindDescription("id", "f"));
-		description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel","id", "integral"));
+		description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel","id", "integral","Integral"));
 		return description;
 	}
 	
@@ -76,6 +87,7 @@ public class LotkaVolterra {
 		SimulationFabric description = new SimulationFabric("Lotka/Volterra");
 		description.setEndTime(100.0);
 		description.setStartTime(0.0);
+		description.setTimeStep(0.005);
 		description.addNodeDescription("beute","simulation.nodes.IntegralWithStartValue").setTitle("Beute");
 		description.addNodeDescription("raeuber","simulation.nodes.IntegralWithStartValue").setTitle("Räuber");
 				
@@ -106,9 +118,9 @@ public class LotkaVolterra {
 		description.connect("beute.f","sb.diff");
 		description.connect("raeuber.f","sr.diff");
 		
-		ShowResultsDescription showDescription = new ShowResultsDescription("Räuber","simulation.results.PositivAxes");
-		showDescription.add("beute", "integral",Color.BLACK);
-		showDescription.add("raeuber", "integral",Color.BLUE);
+		ShowResultsDescription showDescription = new ShowResultsDescription("Räuber&Beute","simulation.results.PositivAxes");
+		showDescription.add("beute", "integral",Color.BLACK,"Beute");
+		showDescription.add("raeuber", "integral",Color.BLUE,"Räuber");
 		description.addShowResults(showDescription);
 		return description;
 	}

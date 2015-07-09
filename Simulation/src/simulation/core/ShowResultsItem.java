@@ -18,8 +18,9 @@ public class ShowResultsItem extends Check {
 	private String nodeName;
 	private String outName;
 	private Color color;
+	private String title;
 
-	public ShowResultsItem(String name, String nodeName, String outName,Color color) {
+	public ShowResultsItem(String name, String nodeName, String outName,Color color, String title) {
 		super();
 		checkNulls(name, nodeName, outName);
 
@@ -27,6 +28,7 @@ public class ShowResultsItem extends Check {
 		this.nodeName = nodeName;
 		this.outName = outName;
 		this.color = color;
+		this.title = title;
 	}
 	
 	
@@ -47,6 +49,12 @@ public class ShowResultsItem extends Check {
 
 	public Color getColor() {
 		return color;
+	}
+
+
+
+	public String getTitle() {
+		return title;
 	}
 
 }

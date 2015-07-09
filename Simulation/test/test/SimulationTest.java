@@ -26,7 +26,7 @@ public class SimulationTest {
 		
 		description.addNodeDescription("id","simulation.nodes.Identity");
 		description.addBindDescription(new BindDescription("id", "x"));
-		description.addResultDescription("Result","simulation.results.ShowOnSystemOut", "id", "f",Color.BLACK);
+		description.addResultDescription("Result","simulation.results.ShowOnSystemOut", "id", "f",Color.BLACK,"Result");
 		
 		Simulation sys;
 		try {
@@ -45,7 +45,7 @@ public class SimulationTest {
 		
 		description.addNodeDescription("id","simulation.nodes.Integral");
 		description.addBindDescription(new BindDescription("id", "f"));
-		description.addResultDescription("Result","simulation.results.ShowOnSystemOut", "id", "integral",Color.BLACK);
+		description.addResultDescription("Result","simulation.results.ShowOnSystemOut", "id", "integral",Color.BLACK,"Result");
 		
 		Simulation sys;
 		try {
@@ -64,7 +64,7 @@ public class SimulationTest {
 	
 		description.addNodeDescription("id","simulation.nodes.Integral");
 		description.addBindDescription(new BindDescription("id", "f"));
-		description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel", "id", "integral"));
+		description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel", "id", "integral","Result"));
 		Simulation sys;
 		try {
 			sys = description.createSystem();
