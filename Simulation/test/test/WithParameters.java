@@ -29,7 +29,7 @@ public class WithParameters {
 		
 			description.addNodeDescription("id","simulation.nodes.IntegralWithStartValue");
 			description.addBindDescription(new BindDescription("id", "f"));
-			description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel", "id", "integral"));
+			description.addShowResults(new ShowResultsDescription("Result","simulation.results.ShowInPanel", "id", "integral","Result"));
 			
 			Simulation sys;
 			try {

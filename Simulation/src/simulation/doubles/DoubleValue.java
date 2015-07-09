@@ -94,7 +94,10 @@ public class DoubleValue extends Check implements ChangeListener {
 	public void setValue(double value) {
 		if (slider != null) {
 			this.value = value;
-			int ivalue = (int) ((value - min) * 100.0 / span);
+			if (description.getUpper() == DoubleBound.UNRESTRICTED) {
+				this.value = value / (1.0 + value);
+			}
+			int ivalue = (int) ((this.value - min) * 100.0 / span);
 			if (slider != null) {
 				slider.setValue(ivalue);
 			}
@@ -115,7 +118,7 @@ public class DoubleValue extends Check implements ChangeListener {
 		double oldValue = value;
 		value = min + (slider.getValue() * span) / 100.0;
 		if (description.getUpper() == DoubleBound.UNRESTRICTED) {
-			value = 10 * value / (1.0 - value);
+			value = value / (1.0 - value);
 		}
 		firePropertyChange(name, oldValue, value);
 	}

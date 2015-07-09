@@ -28,13 +28,13 @@ public class ShowResultsDescription extends Check {
 		this.className = className;
 	}
 	
-	public ShowResultsDescription(String name, String className,String nodeName, String outName) {
+	public ShowResultsDescription(String name, String className,String nodeName, String outName, String title) {
 		this(name,className);
-		add(nodeName,outName,Color.BLACK);
+		add(nodeName,outName,Color.BLACK,title);
 	}
 		
-	public void add(String nodeName, String outName,Color color) {
-		add(new ShowResultsItem(nodeName, nodeName, outName,color));
+	public void add(String nodeName, String outName,Color color, String title) {
+		add(new ShowResultsItem(nodeName, nodeName, outName,color,title));
 	}
 
 	public String getName() {
