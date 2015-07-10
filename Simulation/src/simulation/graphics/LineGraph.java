@@ -86,8 +86,12 @@ public class LineGraph extends Check implements GraphicalElement {
 	}
 
 	public void clear() {
-		points.removeAll(points);
+		points.clear();
 
+	}
+	
+	public int size() {
+		return points.size();
 	}
 
 }

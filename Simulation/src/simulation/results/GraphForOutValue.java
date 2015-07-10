@@ -11,6 +11,7 @@ public class GraphForOutValue extends LineGraph {
 	String name;
 	private Node outNode;
 	private int outNr;
+	private int lastX;
 
 	public GraphForOutValue(String name,Node outNode, int outNr) {
 		super();
@@ -29,8 +30,14 @@ public class GraphForOutValue extends LineGraph {
 		double t = system.getTime();
 
 		double value = outNode.getOut(outNr);
-		Point p = new Point(panel.scaleX(t), panel.scaleY(value));
-		addElement(p);
+		int x = panel.scaleX(t);
+		int y = panel.scaleY(value);
+		
+		if (size()==0 || Math.abs(lastX - x) > 3) {
+			Point p = new Point(x,y);
+			addElement(p);
+			lastX = x;
+		} 
 	}
 
 
