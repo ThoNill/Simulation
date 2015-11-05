@@ -49,7 +49,6 @@ public class BindDescription extends Check {
 		super();
 		checkNulls(zielNode, zielValue);
 		this.zielNode = zielNode;
-		this.quellValue = quellValue;
 		this.zielValue = zielValue;
 		this.type = DescriptionType.TIME;
 	}
