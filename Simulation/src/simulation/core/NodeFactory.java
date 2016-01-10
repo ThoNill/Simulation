@@ -26,10 +26,10 @@ public class NodeFactory extends Check {
 			InvocationTargetException {
 		checkNull(descr);
 
-		Class clazz = Class.forName(descr.getClassName());
+		Class<?> clazz = Class.forName(descr.getClassName());
 		Constructor<Node> constructor = null;
 		try {
-			constructor = clazz.getConstructor(String.class);
+			constructor = (Constructor<Node>) clazz.getConstructor(String.class);
 			if (constructor != null) {
 				return constructor.newInstance(descr.getName());
 			}
@@ -37,7 +37,7 @@ public class NodeFactory extends Check {
 
 		}
 		try {
-			constructor = clazz.getConstructor(String.class, String.class);
+			constructor = (Constructor<Node>) clazz.getConstructor(String.class, String.class);
 			if (constructor != null) {
 				return constructor.newInstance(descr.getName(),descr.getTitle());
 			}

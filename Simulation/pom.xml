@@ -5,6 +5,7 @@
 	<artifactId>Simulation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
+		<defaultGoal>clean install</defaultGoal>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<plugins>
