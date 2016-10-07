@@ -1,30 +1,31 @@
 package allgemein;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckAuftreten extends Check {
-	public Vector<String> namen;
+    public List<String> namen;
 
-	public CheckAuftreten() {
-		namen = new Vector<>();
-	}
+    public CheckAuftreten() {
+        namen = new ArrayList<>();
+    }
 
-	public void nurEinmal(String name, String meldung) {
-		if (namen.contains(name)) {
-			throw new RuntimeException(meldung);
-		}
-		namen.add(name);
-	}
+    public void nurEinmal(String name, String meldung) {
+        if (namen.contains(name)) {
+            throw new IllegalStateException(meldung);
+        }
+        namen.add(name);
+    }
 
-	public void istDa(String name, String meldung) {
-		if (!namen.contains(name)) {
-			throw new RuntimeException(meldung);
-		}
-	}
+    public void istDa(String name, String meldung) {
+        if (!namen.contains(name)) {
+            throw new IllegalStateException(meldung);
+        }
+    }
 
-	public void fuellen(String... neueNamen) {
-		for (String name : neueNamen) {
-			namen.add(name);
-		}
-	}
+    public void fuellen(String... neueNamen) {
+        for (String name : neueNamen) {
+            namen.add(name);
+        }
+    }
 }

@@ -16,36 +16,36 @@ import javax.swing.plaf.ComponentUI;
  */
 public class DefaultShowResultComponentUI extends ShowResultComponentUI {
 
-	DefaultShowResultComponentUI() {
-		super();
-	}
+    DefaultShowResultComponentUI() {
+        super();
+    }
 
-	@Override
-	public void paint(Graphics g, JComponent c) {
-		ShowResultComponent sc = (ShowResultComponent) c;
-		Graphics2D g2 = (Graphics2D) g;
+    @Override
+    public void paint(Graphics g, JComponent c) {
+        ShowResultComponent sc = (ShowResultComponent) c;
+        Graphics2D g2 = (Graphics2D) g;
 
-		ArrayList<GraphicalElement> elements = sc.getModel();
-		synchronized (elements) {
-			for (GraphicalElement t : elements) {
-				t.paint(g2, sc);
-			}
-		}
+        ArrayList<GraphicalElement> elements = sc.getModel();
+        synchronized (elements) {
+            for (GraphicalElement t : elements) {
+                t.paint(g2, sc);
+            }
+        }
 
-	}
+    }
 
-	public static ComponentUI createUI(JComponent c) {
-		return new DefaultShowResultComponentUI();
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new DefaultShowResultComponentUI();
+    }
 
-	@Override
-	public void installUI(JComponent c) {
+    @Override
+    public void installUI(JComponent c) {
 
-	}
+    }
 
-	@Override
-	public void uninstallUI(JComponent c) {
+    @Override
+    public void uninstallUI(JComponent c) {
 
-	}
+    }
 
 }

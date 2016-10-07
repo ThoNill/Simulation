@@ -10,28 +10,28 @@ package simulation.doubles;
  *
  */
 public class DoubleBound {
-	public static DoubleBound UNRESTRICTED = new DoubleBound();
+    public static final DoubleBound UNRESTRICTED = new DoubleBound();
 
-	private double limit;
+    private double limit;
 
-	public double getLimit() {
-		return limit;
-	}
+    public double getLimit() {
+        return limit;
+    }
 
-	public DoubleBound(double limit) {
-		super();
-		this.limit = limit;
-	}
+    public DoubleBound(double limit) {
+        super();
+        this.limit = limit;
+    }
 
-	public DoubleBound() {
-		this(0.0);
-	}
+    public DoubleBound() {
+        this(0.0);
+    }
 
-	@Override
-	public String toString() {
-		if (this == UNRESTRICTED)
-			return "";
-		return "" + limit;
-	}
+    @Override
+    public String toString() {
+        if (this == UNRESTRICTED)
+            return "";
+        return "" + limit;
+    }
 
 }

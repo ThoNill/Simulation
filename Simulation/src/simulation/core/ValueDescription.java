@@ -13,71 +13,71 @@ import allgemein.Check;
  */
 public abstract class ValueDescription<V> extends Check {
 
-	public static enum Type {
-		IN, OUT, PARAMETER
-	}
+    public static enum Type {
+        IN, OUT, PARAMETER
+    }
 
-	private Type type;
-	private int number;
-	private String name;
-	private Node node;
-	private String title;
+    private Type type;
+    private int number;
+    private String name;
+    private Node node;
+    private String title;
 
-	public abstract Class getValueClass();
+    public abstract Class getValueClass();
 
-	public ValueDescription(String name) {
-		super();
-		checkNull(name);
+    public ValueDescription(String name) {
+        super();
+        checkNull(name);
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	public int getNumber() {
-		return number;
-	}
+    public int getNumber() {
+        return number;
+    }
 
-	public void setNumber(int number) {
-		check(number >= 0, "Index muss >= 0 sein");
+    public void setNumber(int number) {
+        check(number >= 0, "Index muss >= 0 sein");
 
-		this.number = number;
-	}
+        this.number = number;
+    }
 
-	public Node getNode() {
-		return node;
-	}
+    public Node getNode() {
+        return node;
+    }
 
-	public void setNode(Node node) {
-		checkNull(node);
+    public void setNode(Node node) {
+        checkNull(node);
 
-		this.node = node;
-	}
+        this.node = node;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getLongName() {
-		return node.getName() + "." + name;
-	}
+    public String getLongName() {
+        return node.getName() + "." + name;
+    }
 
-	public Type getType() {
-		return type;
-	}
+    public Type getType() {
+        return type;
+    }
 
-	public void setType(Type type) {
-		checkNull(type);
+    public void setType(Type type) {
+        checkNull(type);
 
-		this.type = type;
-	}
+        this.type = type;
+    }
 
-	public String getTitle() {
-		if (title==null) {
-			return name;
-		}
-		return title;
-	}
+    public String getTitle() {
+        if (title == null) {
+            return name;
+        }
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

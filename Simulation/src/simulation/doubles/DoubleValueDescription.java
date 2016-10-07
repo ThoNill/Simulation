@@ -12,29 +12,29 @@ import simulation.core.ValueDescription;
  *
  */
 public class DoubleValueDescription extends ValueDescription<DoubleValue> {
-	private DoubleBound lower;
-	private DoubleBound upper;
+    private DoubleBound lower;
+    private DoubleBound upper;
 
-	public DoubleValueDescription(String name, DoubleBound lower,
-			DoubleBound upper) {
-		super(name);
-		checkNulls(name, lower, upper);
+    public DoubleValueDescription(String name, DoubleBound lower,
+            DoubleBound upper) {
+        super(name);
+        checkNulls(name, lower, upper);
 
-		this.lower = lower;
-		this.upper = upper;
-	}
+        this.lower = lower;
+        this.upper = upper;
+    }
 
-	public DoubleBound getLower() {
-		return lower;
-	}
+    public DoubleBound getLower() {
+        return lower;
+    }
 
-	public DoubleBound getUpper() {
-		return upper;
-	}
+    public DoubleBound getUpper() {
+        return upper;
+    }
 
-	@Override
-	public Class getValueClass() {
-		return double.class;
-	}
+    @Override
+    public Class getValueClass() {
+        return double.class;
+    }
 
 }

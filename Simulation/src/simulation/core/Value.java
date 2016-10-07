@@ -10,5 +10,5 @@ package simulation.core;
  *
  */
 public interface Value {
-	Object getObject();
+    Object getObject();
 }

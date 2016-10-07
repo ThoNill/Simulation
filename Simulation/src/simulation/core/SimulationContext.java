@@ -12,18 +12,18 @@ import allgemein.Check;
  *
  */
 public class SimulationContext extends Check {
-	protected Zeitgeber time;
+    protected Zeitgeber time;
 
-	public SimulationContext(double startTime, double timeStep, double endTime) {
-		time = new LineareZeit(startTime, timeStep, endTime);
-	}
+    public SimulationContext(double startTime, double timeStep, double endTime) {
+        time = new LineareZeit(startTime, timeStep, endTime);
+    }
 
-	public double getTime() {
-		return time.getCurrentTime();
-	}
+    public double getTime() {
+        return time.getCurrentTime();
+    }
 
-	public double getTimeStep() {
-		return time.getStep();
-	}
+    public double getTimeStep() {
+        return time.getStep();
+    }
 
 }

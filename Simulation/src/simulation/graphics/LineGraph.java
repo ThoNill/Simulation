@@ -20,78 +20,78 @@ import allgemein.Check;
  *
  */
 public class LineGraph extends Check implements GraphicalElement {
-	private static final long serialVersionUID = 8968178121114199097L;
-	private Color currentColor = Color.black;
-	private int currentLineWidth = 1;
-	private ArrayList<Point> points = new ArrayList<Point>();
+    private static final long serialVersionUID = 8968178121114199097L;
+    private Color currentColor = Color.black;
+    private int currentLineWidth = 1;
+    private ArrayList<Point> points = new ArrayList<Point>();
 
-	public LineGraph() {
-	}
+    public LineGraph() {
+    }
 
-	public void setCurrentColor(Color currentColor) {
-		checkNull(currentColor);
+    public void setCurrentColor(Color currentColor) {
+        checkNull(currentColor);
 
-		this.currentColor = currentColor;
-	}
+        this.currentColor = currentColor;
+    }
 
-	public void setCurrentLineWidth(int currentLineWidth) {
-		check(currentLineWidth > 0, "Strichstärke muss > 0 sein");
-		this.currentLineWidth = currentLineWidth;
-	}
+    public void setCurrentLineWidth(int currentLineWidth) {
+        check(currentLineWidth > 0, "Strichstärke muss > 0 sein");
+        this.currentLineWidth = currentLineWidth;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see simulation.graphics.GraphicalElement#paint(java.awt.Graphics2D)
-	 */
-	@Override
-	public void paint(Graphics2D g, ShowResultComponent comp) {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see simulation.graphics.GraphicalElement#paint(java.awt.Graphics2D)
+     */
+    @Override
+    public void paint(Graphics2D g, ShowResultComponent comp) {
 
-		Dimension dim = comp.getSize();
-		Point ursprung = comp.getUrsprung();
-		int x0 = ursprung.x;
-		int y0 = ursprung.y;
-		int h = dim.height - y0;
+        Dimension dim = comp.getSize();
+        Point ursprung = comp.getUrsprung();
+        int x0 = ursprung.x;
+        int y0 = ursprung.y;
+        int h = dim.height - y0;
 
-		Font f = g.getFont();
-		Stroke s = g.getStroke();
-		Color c = g.getColor();
+        Font f = g.getFont();
+        Stroke s = g.getStroke();
+        Color c = g.getColor();
 
-		g.setStroke(new BasicStroke(currentLineWidth));
-		g.setColor(currentColor);
+        g.setStroke(new BasicStroke(currentLineWidth));
+        g.setColor(currentColor);
 
-		Point previousPoint = null;
+        Point previousPoint = null;
 
-		synchronized (points) {
-			for (Point t : points) {
-				if (previousPoint != null) {
-					g.drawLine(previousPoint.x + x0, h - previousPoint.y, t.x
-							+ x0, h - t.y);
-				}
-				previousPoint = t;
+        synchronized (points) {
+            for (Point t : points) {
+                if (previousPoint != null) {
+                    g.drawLine(previousPoint.x + x0, h - previousPoint.y, t.x
+                            + x0, h - t.y);
+                }
+                previousPoint = t;
 
-			}
-		}
+            }
+        }
 
-		g.setFont(f);
-		g.setStroke(s);
-		g.setColor(c);
+        g.setFont(f);
+        g.setStroke(s);
+        g.setColor(c);
 
-	}
+    }
 
-	public void addElement(Point t) {
-		checkNull(t);
+    public void addElement(Point t) {
+        checkNull(t);
 
-		points.add(t);
-	}
+        points.add(t);
+    }
 
-	public void clear() {
-		points.clear();
+    public void clear() {
+        points.clear();
 
-	}
-	
-	public int size() {
-		return points.size();
-	}
+    }
+
+    public int size() {
+        return points.size();
+    }
 
 }

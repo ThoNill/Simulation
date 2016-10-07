@@ -9,8 +9,8 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import allgemein.Check;
 import simulation.core.GUIFactory;
+import allgemein.Check;
 
 /**********
  * 
@@ -22,35 +22,35 @@ import simulation.core.GUIFactory;
  *
  */
 public class DoubleViewFactory extends Check implements
-		GUIFactory<DoubleValue, DoubleValueDescription> {
+        GUIFactory<DoubleValue, DoubleValueDescription> {
 
-	@Override
-	public JPanel getGUI(DoubleValue value, DoubleValueDescription description) {
-		checkNulls(value, description);
+    @Override
+    public JPanel getGUI(DoubleValue value, DoubleValueDescription description) {
+        checkNulls(value, description);
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		TitledBorder titel = new TitledBorder(description.getTitle());
-		
-		panel.setBorder(titel);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        TitledBorder titel = new TitledBorder(description.getTitle());
 
-		Hashtable<Integer,JLabel> labelTable = new Hashtable<Integer, JLabel>();
-		labelTable.put(new Integer(0), new JLabel(description.getLower()
-				.toString()));
-		labelTable.put(new Integer(100), new JLabel(description.getUpper()
-				.toString()));
+        panel.setBorder(titel);
 
-		JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 0);
-		slider.setMajorTickSpacing(10);
-		slider.setPaintTicks(true);
-		slider.setLabelTable(labelTable);
-		slider.setPaintLabels(true);
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+        labelTable.put(new Integer(0), new JLabel(description.getLower()
+                .toString()));
+        labelTable.put(new Integer(100), new JLabel(description.getUpper()
+                .toString()));
 
-		value.setDescription(description);
-		value.setSlider(slider);
+        JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 0);
+        slider.setMajorTickSpacing(10);
+        slider.setPaintTicks(true);
+        slider.setLabelTable(labelTable);
+        slider.setPaintLabels(true);
 
-		panel.add(slider);
-		return panel;
-	}
+        value.setDescription(description);
+        value.setSlider(slider);
+
+        panel.add(slider);
+        return panel;
+    }
 
 }

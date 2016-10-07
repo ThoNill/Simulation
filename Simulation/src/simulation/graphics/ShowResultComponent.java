@@ -18,56 +18,56 @@ import allgemein.Check;
  */
 public class ShowResultComponent extends JComponent implements ChangeListener {
 
-	private static final long serialVersionUID = 4228495550165832404L;
-	private Point ursprung;
-	private ShowResultComponentUI ui;
-	protected Check check = new Check();
+    private static final long serialVersionUID = 4228495550165832404L;
+    private Point ursprung;
+    private ShowResultComponentUI ui;
+    protected Check check = new Check();
 
-	private ArrayList<GraphicalElement> elements = new ArrayList<GraphicalElement>();
+    private ArrayList<GraphicalElement> elements = new ArrayList<GraphicalElement>();
 
-	public ShowResultComponent() {
-		super();
-		ui = new DefaultShowResultComponentUI();
-	}
+    public ShowResultComponent() {
+        super();
+        ui = new DefaultShowResultComponentUI();
+    }
 
-	public Point getUrsprung() {
-		return ursprung;
-	}
+    public Point getUrsprung() {
+        return ursprung;
+    }
 
-	public void setUrsprung(Point ursprung) {
-		check.checkNull(ursprung);
-		this.ursprung = ursprung;
-	}
+    public void setUrsprung(Point ursprung) {
+        check.checkNull(ursprung);
+        this.ursprung = ursprung;
+    }
 
-	public ArrayList<GraphicalElement> getModel() {
-		return elements;
-	}
+    public ArrayList<GraphicalElement> getModel() {
+        return elements;
+    }
 
-	public void addElement(GraphicalElement e) {
-		check.checkNull(e);
+    public void addElement(GraphicalElement e) {
+        check.checkNull(e);
 
-		elements.add(e);
-		updateUI();
-	}
+        elements.add(e);
+        updateUI();
+    }
 
-	@Override
-	public void stateChanged(ChangeEvent arg0) {
-		updateUI();
-	}
+    @Override
+    public void stateChanged(ChangeEvent arg0) {
+        updateUI();
+    }
 
-	public void clear() {
-		elements.removeAll(elements);
-		updateUI();
-	}
+    public void clear() {
+        elements.removeAll(elements);
+        updateUI();
+    }
 
-	@Override
-	public void updateUI() {
-		setUI(ui);
-		invalidate();
-	}
+    @Override
+    public void updateUI() {
+        setUI(ui);
+        invalidate();
+    }
 
-	@Override
-	public String getUIClassID() {
-		return "ShowResultComponentUI";
-	}
+    @Override
+    public String getUIClassID() {
+        return "ShowResultComponentUI";
+    }
 }

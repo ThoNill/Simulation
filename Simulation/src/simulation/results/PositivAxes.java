@@ -1,9 +1,9 @@
 package simulation.results;
 
-public class PositivAxes extends ShowInPanel{
+public class PositivAxes extends ShowInPanel {
 
-	public PositivAxes() {
-		super(Art.POSITIV_AXES);
-	}
+    public PositivAxes() {
+        super(Art.POSITIV_AXES);
+    }
 
 }

@@ -10,12 +10,12 @@ package simulation.core;
  *
  */
 public interface Zeitgeber {
-	public double getCurrentTime();
+    public double getCurrentTime();
 
-	public abstract void start();
+    public abstract void start();
 
-	public abstract boolean next();
+    public abstract boolean next();
 
-	public double getStep();
+    public double getStep();
 
 }

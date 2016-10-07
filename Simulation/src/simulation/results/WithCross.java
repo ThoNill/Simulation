@@ -1,9 +1,9 @@
 package simulation.results;
 
-public class WithCross extends ShowInPanel{
+public class WithCross extends ShowInPanel {
 
-	public WithCross() {
-		super(Art.WITH_CROSS);
-	}
+    public WithCross() {
+        super(Art.WITH_CROSS);
+    }
 
 }

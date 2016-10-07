@@ -14,47 +14,42 @@ import allgemein.Check;
  *
  */
 public class ShowResultsItem extends Check {
-	private String name;
-	private String nodeName;
-	private String outName;
-	private Color color;
-	private String title;
+    private String name;
+    private String nodeName;
+    private String outName;
+    private Color color;
+    private String title;
 
-	public ShowResultsItem(String name, String nodeName, String outName,Color color, String title) {
-		super();
-		checkNulls(name, nodeName, outName);
+    public ShowResultsItem(String name, String nodeName, String outName,
+            Color color, String title) {
+        super();
+        checkNulls(name, nodeName, outName);
 
-		this.name = name;
-		this.nodeName = nodeName;
-		this.outName = outName;
-		this.color = color;
-		this.title = title;
-	}
-	
-	
+        this.name = name;
+        this.nodeName = nodeName;
+        this.outName = outName;
+        this.color = color;
+        this.title = title;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getNodeName() {
-		return nodeName;
-	}
+    public String getNodeName() {
+        return nodeName;
+    }
 
-	public String getOutName() {
-		return outName;
-	}
+    public String getOutName() {
+        return outName;
+    }
 
+    public Color getColor() {
+        return color;
+    }
 
-
-	public Color getColor() {
-		return color;
-	}
-
-
-
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
 }

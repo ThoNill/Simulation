@@ -4,18 +4,18 @@ import simulation.core.Node;
 import simulation.core.SimulationContext;
 
 public class NodeWithSimulationRef extends Node {
-	private SimulationContext system;
+    private SimulationContext system;
 
-	public NodeWithSimulationRef(String name) {
-		super(name);
-	}
+    public NodeWithSimulationRef(String name) {
+        super(name);
+    }
 
-	public SimulationContext getSystem() {
-		return system;
-	}
+    public SimulationContext getSystem() {
+        return system;
+    }
 
-	public void setSystem(SimulationContext system) {
-		this.system = system;
-	}
+    public void setSystem(SimulationContext system) {
+        this.system = system;
+    }
 
 }

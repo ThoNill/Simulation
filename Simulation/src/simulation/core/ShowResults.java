@@ -12,14 +12,14 @@ import java.awt.Color;
  *
  */
 public interface ShowResults {
-	public void addViewData(SimulationContext system);
+    public void addViewData(SimulationContext system);
 
-	public void init(String name);
-	
-	public void addOutputFor(String name,Node outNode, int outNr,Color color);
+    public void init(String name);
 
-	public void clearView();
+    public void addOutputFor(String name, Node outNode, int outNr, Color color);
 
-	public void updateView();
+    public void clearView();
+
+    public void updateView();
 
 }

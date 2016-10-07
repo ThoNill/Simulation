@@ -2,7 +2,8 @@ package simulation.main;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import simulation.core.Node;
 import simulation.core.ShowResults;
@@ -20,95 +21,95 @@ import simulation.setter.SetValue;
  *
  */
 public class Simulation extends SimulationContext implements
-		PropertyChangeListener {
+        PropertyChangeListener {
 
-	Vector<Node> nodes = new Vector<>();
-	Vector<SetValue> setter = new Vector<>();
-	Vector<SetValue> startValues = new Vector<>();
-	Vector<SetValue> setTime = new Vector<>();
+    List<Node> nodes = new ArrayList<>();
+    List<SetValue> setter = new ArrayList<>();
+    List<SetValue> startValues = new ArrayList<>();
+    List<SetValue> setTime = new ArrayList<>();
 
-	Vector<ShowResults> showResuts = new Vector<>();
+    List<ShowResults> showResuts = new ArrayList<>();
 
-	public Simulation(double startTime, double timeStep, double endTime) {
-		super(startTime, timeStep, endTime);
+    public Simulation(double startTime, double timeStep, double endTime) {
+        super(startTime, timeStep, endTime);
 
-	}
+    }
 
-	public synchronized void simulate() {
+    public synchronized void simulate() {
 
-		time.start();
-		for (Node node : nodes) {
-			node.initDatastructures();
-		}
-		for (SetValue s : startValues) {
-			s.setValue();
-		}
-		for (Node node : nodes) {
-			node.initValues();
-		}
+        time.start();
+        for (Node node : nodes) {
+            node.initDatastructures();
+        }
+        for (SetValue s : startValues) {
+            s.setValue();
+        }
+        for (Node node : nodes) {
+            node.initValues();
+        }
 
-		for (ShowResults show : showResuts) {
-			show.clearView();
-		}
+        for (ShowResults show : showResuts) {
+            show.clearView();
+        }
 
-		do {
-			for (SetValue s : setTime) {
-				s.setValue();
-			}
-			for (Node node : nodes) {
-				node.calculate();
-			}
+        do {
+            for (SetValue s : setTime) {
+                s.setValue();
+            }
+            for (Node node : nodes) {
+                node.calculate();
+            }
 
-			for (ShowResults show : showResuts) {
-				show.addViewData(this);
-			}
+            for (ShowResults show : showResuts) {
+                show.addViewData(this);
+            }
 
-			for (SetValue s : setter) {
-				s.setValue();
-			}
-		} while (time.next());
+            for (SetValue s : setter) {
+                s.setValue();
+            }
+        } while (time.next());
 
-		for (ShowResults show : showResuts) {
-			show.updateView();
-		}
+        for (ShowResults show : showResuts) {
+            show.updateView();
+        }
 
-	}
+    }
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		simulate();
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        simulate();
 
-	}
+    }
 
-	void afterCalculation(SetValue setValue) {
-		checkNull(setValue);
-		setter.add(setValue);
-	}
+    void afterCalculation(SetValue setValue) {
+        checkNull(setValue);
+        setter.add(setValue);
+    }
 
-	void afterTimeStep(SetValue setValue) {
-		checkNull(setValue);
-		setTime.add(setValue);
-	}
+    void afterTimeStep(SetValue setValue) {
+        checkNull(setValue);
+        setTime.add(setValue);
+    }
 
-	void atStart(SetValue setValue) {
-		checkNull(setValue);
-		startValues.add(setValue);
-	}
+    void atStart(SetValue setValue) {
+        checkNull(setValue);
+        startValues.add(setValue);
+    }
 
-	void addNode(Node node) {
-		checkNull(node);
+    void addNode(Node node) {
+        checkNull(node);
 
-		if (node instanceof NodeWithSimulationRef) {
-			((NodeWithSimulationRef) node).setSystem(this);
-		}
+        if (node instanceof NodeWithSimulationRef) {
+            ((NodeWithSimulationRef) node).setSystem(this);
+        }
 
-		nodes.add(node);
-	}
+        nodes.add(node);
+    }
 
-	void addShowResult(ShowResults show) {
-		checkNull(show);
+    void addShowResult(ShowResults show) {
+        checkNull(show);
 
-		showResuts.add(show);
-	}
+        showResuts.add(show);
+    }
 
 }

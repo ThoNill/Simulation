@@ -12,36 +12,36 @@ import allgemein.Check;
  *
  */
 public class NodeDescription extends Check {
-	private String name;
-	private String className;
-	private String title;
+    private String name;
+    private String className;
+    private String title;
 
-	public NodeDescription(String name, String className) {
-		super();
-		checkNulls(name, className);
+    public NodeDescription(String name, String className) {
+        super();
+        checkNulls(name, className);
 
-		this.name = name;
-		this.className = className;
+        this.name = name;
+        this.className = className;
 
-	}
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public String getTitle() {
-		if (title==null) {
-			return name;
-		}
-		return title;
-	}
+    public String getTitle() {
+        if (title == null) {
+            return name;
+        }
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
 }

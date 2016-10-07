@@ -12,5 +12,5 @@ import javax.swing.JPanel;
  *
  */
 public interface GUIFactory<V, D> {
-	public abstract JPanel getGUI(V value, D description);
+    public abstract JPanel getGUI(V value, D description);
 }
